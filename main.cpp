@@ -357,3 +357,14 @@ void setAlarm()
     isAlarm = true;
     runningClock(&hour, &minute, &second, &now, &lastTime, &mls, &flag);
 }
+
+void checkAlarm()
+{
+    if (hour == hourAlarm & minute == minuteAlarm & second == secondAlarm & flag == flagAlarm)
+    {
+        tone(buzzer, 1000);
+        delay(3000);
+        noTone(buzzer);
+        isAlarm = false;
+    }
+}

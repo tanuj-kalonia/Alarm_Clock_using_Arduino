@@ -19,7 +19,7 @@
 
 ## `set Alarm`
 
-<img src="https://github.com/tanuj-kalonia/Alarm_Clock_using_Arduino/blob/master/clock.png" />
+<img src="https://github.com/tanuj-kalonia/Alarm_Clock_using_Arduino/blob/master/alarm.png" />
 
 ## `Steps to change time`
 

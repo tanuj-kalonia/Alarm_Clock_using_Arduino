@@ -20,10 +20,24 @@
 
 <img src="https://github.com/tanuj-kalonia/Alarm_Clock_using_Arduino/blob/master/clock.png" />
 
-## Steps to change time ??
+## `Steps to change time`
 
-### Press button 1 to trigger mode 1. We can change time in this mode. <br />
+### Press `button 1` to trigger mode 1. We can change time in this mode.
 
-### Then the hour will start blinking. Press button 2 to increase the hours.
+### Then the `hour` will start blinking.
 
-### To change minutes, Press button 3. Then press button 2 to increase the minute.
+### To change hours, Press `button 2` to increase the hours.
+
+### To `change minutes`, Press `button 3`. Then press `button 2` to increase the minute.
+
+### To `change seconds`, Press button 3 again, Then press `button 2' to update the seconds.
+
+### Press button 4 to toggle between `AM/PM`;
+
+<br />
+
+## `Steps to set Alarm`
+
+### Press button 2 to trigger mode 2. We can set alarm in this mode.
+
+## Follow the same methods as we followed to change the time

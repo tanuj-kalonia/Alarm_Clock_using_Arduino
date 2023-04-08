@@ -1,6 +1,6 @@
 ## Digital Alarm Clock in Arduino
 
-`Working Prototype` : shorturl.at/fpt58
+`Working Prototype` : <a href='shorturl.at/fpt58' />
 ### User can set time and alarm
 
 `Mode` : It has 3 modes

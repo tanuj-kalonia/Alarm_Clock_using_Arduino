@@ -146,3 +146,108 @@ void runningClock(int *_hour, int *_minute, int *_second, int *_now, int *_lastT
     if (isAlarm)
         checkAlarm();
 }
+
+//////////****************TIMESETTING***************//////////
+void setTime()
+{
+    int *main_var;
+    int X, Y;
+    lcd.clear();
+
+    int currentChangeIn = 1; // 1 is hour 2 is minute and so on
+    while (true)
+    {
+        lcd.setCursor(0, 0);
+        lcd.print("Set Time");
+        lcd.setCursor(0, 1);
+        if (hour < 10)
+            lcd.print("0");
+        lcd.print(hour);
+        lcd.print(":");
+        if (minute < 10)
+            lcd.print("0");
+        lcd.print(minute);
+        lcd.print(":");
+        if (second < 10)
+            lcd.print("0");
+        lcd.print(second);
+
+        if (flag == 0)
+            lcd.print(" AM");
+        if (flag == 1)
+            lcd.print(" PM");
+
+        btnstate1 = digitalRead(pushbtn1);
+        btnstate2 = digitalRead(pushbtn2);
+        btnstate3 = digitalRead(pushbtn3);
+        btnstate4 = digitalRead(pushbtn4);
+        if (btnstate1 == 1)
+        {
+            mode = 0;
+            delay(200);
+            break;
+        }
+        if (btnstate3 == 1)
+        {
+            if (currentChangeIn == 3)
+                currentChangeIn = 0;
+            currentChangeIn += 1;
+            delay(200);
+        }
+        if (currentChangeIn == 1)
+        {
+            main_var = &hour;
+            X = 0;
+            Y = 1;
+
+            if (digitalRead(pushbtn2) == 1)
+            {
+                hour += 1;
+                if (hour == 13)
+                    hour = 1;
+                else if (hour == 12 & flag == 0)
+                    hour = 0;
+                delay(200);
+            }
+        }
+        if (currentChangeIn == 2)
+        {
+            main_var = &minute;
+            X = 3;
+            Y = 1;
+
+            if (digitalRead(pushbtn2) == 1)
+            {
+                minute += 1;
+                if (minute == 60)
+                    minute = 0;
+                delay(200);
+            }
+        }
+        if (currentChangeIn == 3)
+        {
+            main_var = &second;
+            X = 6;
+            Y = 1;
+
+            if (digitalRead(pushbtn2) == 1)
+            {
+                second += 1;
+                if (second == 60)
+                    second = 0;
+                delay(200);
+            }
+        }
+        if (btnstate4 == 1)
+        {
+            flag = flag == 0 ? 1 : 0;
+            if (flag == 0 & hour == 12)
+                hour = 0;
+            else if (flag == 1 & hour == 0)
+                hour = 12;
+            delay(200);
+        }
+        blink(*main_var, X, Y);
+        runningClock(&hour, &minute, &second, &now, &lastTime, &mls, &flag);
+    }
+}

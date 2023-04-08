@@ -368,3 +368,22 @@ void checkAlarm()
         isAlarm = false;
     }
 }
+
+//////////****************COMMON FUNCTION***************//////////
+void blink(int main_var, int X, int Y)
+{
+    lcd.setCursor(X, Y);
+    if (pis == 0)
+    {
+        if (main_var < 10)
+            lcd.print("0");
+        lcd.print(main_var);
+        delay(200);
+    }
+    if (pis == 1)
+    {
+        lcd.print("  ");
+        delay(200);
+    }
+    pis = (pis + 1) % 2;
+}

@@ -1,6 +1,6 @@
 ## Digital Alarm Clock in Arduino
 
-`Working Prototype` : <a href='https://www.tinkercad.com/things/aXIS9j6WARl-copy-of-digital-clock-with-alarm-timer-and-stopwatch/editel?tenant=circuits' target="_blank"> Tinker this <a/>
+`Working Prototype` : <a href='https://www.tinkercad.com/things/aXIS9j6WARl-copy-of-digital-clock-with-alarm-timer-and-stopwatch/editel?tenant=circuits'> Tinker this <a/>
 ### User can set time and alarm
 
 `Mode` : It has 3 modes

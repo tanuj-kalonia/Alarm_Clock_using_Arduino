@@ -251,3 +251,109 @@ void setTime()
         runningClock(&hour, &minute, &second, &now, &lastTime, &mls, &flag);
     }
 }
+
+//////////****************ALARM***************//////////
+void setAlarm()
+{
+    int *main_var;
+    int X, Y;
+    lcd.clear();
+
+    int currentChangeIn = 1; // 1 is hour 2 is minute and so on
+    while (true)
+    {
+        lcd.setCursor(0, 0);
+        lcd.print("Set Alarm");
+        lcd.setCursor(0, 1);
+        if (hourAlarm < 10)
+            lcd.print("0");
+        lcd.print(hourAlarm);
+        lcd.print(":");
+        if (minuteAlarm < 10)
+            lcd.print("0");
+        lcd.print(minuteAlarm);
+        lcd.print(":");
+        if (secondAlarm < 10)
+            lcd.print("0");
+        lcd.print(secondAlarm);
+
+        if (flagAlarm == 0)
+            lcd.print(" AM");
+        if (flagAlarm == 1)
+            lcd.print(" PM");
+
+        btnstate1 = digitalRead(pushbtn1);
+        btnstate2 = digitalRead(pushbtn2);
+        btnstate3 = digitalRead(pushbtn3);
+        btnstate4 = digitalRead(pushbtn4);
+        if (btnstate1 == 1)
+        {
+            mode = 0;
+            delay(200);
+            break;
+        }
+        if (btnstate3 == 1)
+        {
+            if (currentChangeIn == 3)
+                currentChangeIn = 0;
+            currentChangeIn += 1;
+            delay(200);
+        }
+        if (currentChangeIn == 1)
+        {
+            main_var = &hourAlarm;
+            X = 0;
+            Y = 1;
+
+            if (digitalRead(pushbtn2) == 1)
+            {
+                hourAlarm += 1;
+                if (hourAlarm == 13)
+                    hourAlarm = 1;
+                else if (hourAlarm == 12 & flagAlarm == 0)
+                    hourAlarm = 0;
+                delay(200);
+            }
+        }
+        if (currentChangeIn == 2)
+        {
+            main_var = &minuteAlarm;
+            X = 3;
+            Y = 1;
+
+            if (digitalRead(pushbtn2) == 1)
+            {
+                minuteAlarm += 1;
+                if (minuteAlarm == 60)
+                    minuteAlarm = 0;
+                delay(200);
+            }
+        }
+        if (currentChangeIn == 3)
+        {
+            main_var = &secondAlarm;
+            X = 6;
+            Y = 1;
+
+            if (digitalRead(pushbtn2) == 1)
+            {
+                secondAlarm += 1;
+                if (secondAlarm == 60)
+                    secondAlarm = 0;
+                delay(200);
+            }
+        }
+        if (btnstate4 == 1)
+        {
+            flagAlarm = flagAlarm == 0 ? 1 : 0;
+            if (flagAlarm == 0 & hourAlarm == 12)
+                hourAlarm = 0;
+            else if (flagAlarm == 1 & hourAlarm == 0)
+                hourAlarm = 12;
+            delay(200);
+        }
+        blink(*main_var, X, Y);
+    }
+    isAlarm = true;
+    runningClock(&hour, &minute, &second, &now, &lastTime, &mls, &flag);
+}

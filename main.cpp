@@ -64,3 +64,85 @@ void checkState()
         mode = 0;
     }
 }
+
+//////////****************CLOCK***************//////////
+void clock()
+{
+    lcd.setCursor(0, 0);
+    lcd.print("What time is it?");
+    lcd.setCursor(0, 1);
+    lcd.print("It's ");
+    if (hour < 10)
+        lcd.print("0");
+    lcd.print(hour);
+    lcd.print(":");
+    if (minute < 10)
+        lcd.print("0");
+    lcd.print(minute);
+    lcd.print(":");
+    if (second < 10)
+        lcd.print("0");
+    lcd.print(second);
+
+    if (flag == 0)
+        lcd.print(" AM");
+    if (flag == 1)
+        lcd.print(" PM");
+
+    checkState();
+    delay(200);
+    runningClock(&hour, &minute, &second, &now, &lastTime, &mls, &flag);
+}
+
+void runningClock(int *_hour, int *_minute, int *_second, int *_now, int *_lastTime, int *_mls, int *_flag)
+{
+    int increHour = 0;
+    *_now = (millis());
+    *_mls += (*_now - *_lastTime);
+    *_lastTime = *_now;
+
+    if (*_mls >= 1000)
+    {
+        *_second += (*_mls / 1000);
+        *_mls %= 1000;
+    }
+    if (*_second >= 60)
+    {
+        *_minute += *_second / 60;
+        *_second %= 60;
+    }
+    if (*_minute >= 60)
+    {
+        increHour = *_minute / 60;
+        *_minute %= 60;
+    }
+    if (increHour % 24 == 0)
+        ; // hour as before
+    else
+    {
+        increHour %= 24;
+        if (increHour < 12)
+        {
+            if (*_hour == 12)
+            {
+                *_hour = increHour;
+            }
+            else if (*_hour + increHour >= 12)
+            {
+                *_hour -= 12;
+                *_flag = *_flag == 0 ? 1 : 0;
+            }
+        }
+        else
+        {
+            *_hour = ((*_hour + increHour) % 12);
+            *_flag = *_flag == 0 ? 1 : 0;
+        }
+        if (*_flag == 0 & *_hour == 12)
+            *_hour = 0;
+        else if (*_flag == 1 & *_hour == 0)
+            *_hour = 12;
+    }
+    if (isAlarm)
+        checkAlarm();
+}

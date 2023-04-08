@@ -40,3 +40,27 @@ void loop()
     else if (mode == 2)
         setAlarm();
 }
+
+void checkState()
+{
+    btnstate1 = digitalRead(pushbtn1);
+    btnstate2 = digitalRead(pushbtn2);
+    btnstate3 = digitalRead(pushbtn3);
+    btnstate4 = digitalRead(pushbtn4);
+
+    if (btnstate1 | btnstate2)
+    {
+        if (btnstate1 == 1)
+        {
+            mode = 1;
+        }
+        if (btnstate2 == 1)
+        {
+            mode = 2;
+        }
+    }
+    else
+    {
+        mode = 0;
+    }
+}

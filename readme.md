@@ -15,3 +15,15 @@
 ## `Clock Image`
 
 <img src="https://github.com/tanuj-kalonia/Alarm_Clock_using_Arduino/blob/master/clock.png" />
+
+## `set Alarm`
+
+<img src="https://github.com/tanuj-kalonia/Alarm_Clock_using_Arduino/blob/master/clock.png" />
+
+## Steps to change time ??
+
+### Press button 1 to trigger mode 1. We can change time in this mode. <br />
+
+### Then the hour will start blinking. Press button 2 to increase the hours.
+
+### To change minutes, Press button 3. Then press button 2 to increase the minute.

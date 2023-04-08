@@ -30,7 +30,7 @@
 
 ### To `change minutes`, Press `button 3`. Then press `button 2` to increase the minute.
 
-### To `change seconds`, Press button 3 again, Then press `button 2' to update the seconds.
+### To `change seconds`, Press button 3 again, Then press `button 2` to update the seconds.
 
 ### Press button 4 to toggle between `AM/PM`;
 
